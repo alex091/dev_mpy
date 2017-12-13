@@ -1,0 +1,126 @@
+1. Show books
+
+Returns data about books.
+
+URL
+/books/
+
+Method:
+GET
+
+URL Params
+year
+category
+language
+
+Success Response:
+Code: 200
+Content: { id : 42, name : "Harry Potter",
+           category: "Fantasy", language: "English",
+           year: 1997}
+
+Sample Call:
+http://www.example.com/books/?category=Fantasy&year=1997
+
+2. Show book detail
+Returns data about specific book.
+
+URL
+/books/<int:book_id>
+
+Method:
+GET
+
+URL Params
+book_id
+
+Success Response:
+Code: 200
+Content: [{ id : 42, name : "Harry Potter",
+           category: "Fantasy", language: "English",
+           year: 1997}]
+           
+Error Response:
+Code: 404
+Content: {"error": "book 42 not found"}
+
+Sample Call:
+http://www.example.com/books/42
+
+3. Critics' comments 
+Returns critics' comments about specific book.
+
+URL
+/books/<int:book_id>/comments/
+
+Method:
+GET
+
+URL Params
+book_id
+
+Success Response:
+Code: 200
+Content: [{"name": "John", "comment": "Awesome book",
+           "date": "14:15 21.11.2017" }]
+           
+Error Response:
+Code: 404
+Content: {"error": "book 42 not found"}
+
+Sample Call:
+http://www.example.com/books/42/comment
+
+4. Edit book any attributes
+Edit some data about specific book.
+
+URL
+/books/<int:book_id>/edit/
+
+Method:
+PATCH
+
+URL Params
+book_id
+
+Update Params
+{"category": "Horroh", "year": 1965}
+
+Success Response:
+Code: 200
+Content: {"successful": true}
+           
+Error Response:
+Code: 404
+Content: {"error": "book 42 not found"}
+Code: 422
+Content: {"error": "no able to modify book 42"}
+Code: 400
+Content: {"error": "bad formated patch data for book 42"}
+
+Sample Call:
+http://www.example.com/books/42/edit
+
+5. Remove book
+Delete the book.
+
+URL
+/books/<int:book_id>/delete/
+
+Method:
+DELETE
+
+URL Params
+book_id
+
+Success Response:
+Code: 200
+Content: ["success": true]
+           
+Error Response:
+Code: 404
+Content: {"error": "book 42 not found"}
+
+Sample Call:
+http://www.example.com/books/42/delete
+
